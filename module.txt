@@ -6,7 +6,7 @@
 # module verification failed: signature and/or required key missing - tainting kernel
 # /usr/src/linux-headers-`uname -r`/scripts/sign-file sha512 /usr/src/linux-headers-`uname -r`/certs/signing_key.pem \
 # /usr/src/linux-headers-`uname -r`/certs/signing_key.x509
-# not essential £¡
+# not essential Â£Â¡
 # The modinfo command displays their parameter information. 
 # However, this command does not work with the built-in module.
 # errors: "modinfo: ERROR: Module * not found." 
