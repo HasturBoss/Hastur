@@ -12,3 +12,10 @@ git remote add origin git@github.com:HasturBoss/<Res>.git
 git pull --rebase origin main
 git push -u origin main
 ```
+
+* Use shellinabox
+```Shell
+apt install openssh-client openssh-server openssl shellinabox ufw
+ufw allow 4200
+Open browser, input https://<ip>:4200
+```
