@@ -1,0 +1,46 @@
+# Init systemctl
+systemctl daemon-reload
+# Show available units all.
+systemctl list-unit-files
+# Show useless units all.
+systemctl list-units
+# Show failed units all.
+systemctl --failed
+# Check out service whether it is available.
+systemctl is-enabled <service>
+# Check out service whether to run.
+systemctl status <service>
+# Show units all.
+systemctl list-unit-files --type=service
+# Kill process if it is running.
+systemctl kill <name>
+systemctl status <name>
+# Enter GUI for level 5.
+systemctl isolate runlevel5.target
+or
+systemctl isolate graphical.target
+
+# Edit service(default)("/lib/systemd/system")
+(
+
+[Unit]
+Description=<name> Service
+After=multi-user.target
+
+[Service]
+RemainAfterExit=True
+ExecStart=bash /home/<username>/<*.sh> <arguments>
+
+[Install]
+WantedBy=default.target
+
+)
+
+# If system was WSL2,it would use service.
+For example: service <name> start ...
+
+
+# Delete except elect file.
+shopt -s extglob
+rm !(<file2>|<file2>)
+shopt -u extglob

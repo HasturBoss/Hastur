@@ -1,0 +1,22 @@
+Run "Docker Desktop"("Setting -> General -> Use the WSL 2 based engine","Setting -> Resource -> WSL INTEGRATION")
+Docker Command("docker --version","docker image ls --all","docker container ls --all " and "docker info")
+!Docker Engine 
+(
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "10GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}
+
+)

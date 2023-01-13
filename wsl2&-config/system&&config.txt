@@ -1,0 +1,19 @@
+!Create folder("mkdir .net","cd .net")
+!Install .NET on Ubuntu 20.04 LTS("wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+!sudo dpkg -i packages-microsoft-prod.deb
+!rm packages-microsoft-prod.deb")
+!Install .NET Core on Ubuntu 20.04 LTS("sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-6.0")
+!Install .NET Core on Ubuntu 20.04 LTS("sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-runtime-6.0")
+Create folder("mkdir .genie","cd .genie")
+Install genie("git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git --recursive /home/<username>/.git/packages/genie","cd /home/<username>/.git/packages/genie" and "bash ubuntu-wsl2-systemd-script.sh")
+Use systemctl command(start, stop, enable, disable)
+Look for "Linux\BashShell\systemctl&&config.txt"(must be look)
+!System has not been booted with systemd as init system (PID 1)("apt update && apt install -yqq daemonize dbus-user-session fontconfig","daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target","exec nsenter -t $(pidof systemd) -a su - $LOGNAME" and "snap version")
+Finally,system config("systemctl daemon-reload")(Must be execute: "daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target" and "exec nsenter -t $(pidof systemd) -a su - $LOGNAME")(copy "Linux\InPackage\daemonize.sh" to "WSL2")
+Advise it edit "/root/.bashrc"("bash <"daemonize.sh" of path>")

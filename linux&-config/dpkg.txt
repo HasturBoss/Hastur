@@ -1,0 +1,3 @@
+dpkg -i (install)
+dpkg -r (remove)
+dpkg -P (remove && relevant file)
