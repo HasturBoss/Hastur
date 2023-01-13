@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 readelf -A /proc/self/exe | grep Tag_ABI_VFP_arg
 # if have (Tag_ABI_VFP_args: VFP registers) :
 # it is armhf, vice-versa (armel)
@@ -74,5 +73,4 @@ hdmi_group=2
 hdmi_mode=82
 hdmi_drive=2
 hdmi_ignore_edid=0xa5000080
->>>>>>> a40be12 (Initial commit)
 disable_overscan=1   
