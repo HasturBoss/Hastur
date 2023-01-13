@@ -35,42 +35,4 @@ hdmi_group=2
 hdmi_mode=82
 hdmi_drive=2
 hdmi_ignore_edid=0xa5000080
-=======
-readelf -A /proc/self/exe | grep Tag_ABI_VFP_arg
-# if have (Tag_ABI_VFP_args: VFP registers) :
-# it is armhf, vice-versa (armel)
-
-#bluetooth
-sudo apt update
-sudo apt upgrade
-sudo apt install bluetooth pi-bluetooth bluez blueman
-
-bluetoothctl
-agent on
-scan on
-
-pair [XX:XX:XX:XX:XX:XX]
-connect [XX:XX:XX:XX:XX:XX]
-trust [XX:XX:XX:XX:XX:XX]
-
-# proxy
-nano /etc/environment
-
-export http_proxy = "http://username:[email protected]:proxyport"
-export https_proxy = "http://username:[email protected]:proxyport"
-export no_proxy = "localhost,127.0.0.1"
-
-visudo
-
-Defaults env_keep+="http_proxy https_proxy no_proxy"
-
-************************************************************************************
-
-# VGA
-hdmi_force_hotplug=1
-config_hdmi_boost=4
-hdmi_group=2
-hdmi_mode=82
-hdmi_drive=2
-hdmi_ignore_edid=0xa5000080
 disable_overscan=1   
