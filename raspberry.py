@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from fpdf import FPDF
 from PIL import Image
 import os
@@ -266,5 +265,4 @@ def tts(str):
     engine.runAndWait()
 
 if __name__=='__main__':
->>>>>>> a40be12 (Initial commit)
     tts(str)
