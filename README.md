@@ -13,11 +13,19 @@ git pull --rebase origin main
 git push -u origin main
 ```
 
+* Use luma.oled of python3, after install Tender
+```Shell
+apt install libopenjp2-7-dev libtiff5
+pip3 install psutil luma.oled
+cp oled.py ~/*.py
+```
+
 * Use cockpit
 ```Shell
 apt install cockpit ufw
 ufw allow 9090
 Open browser, input https://<ip>:9090
+```
 
 * Use shellinabox
 ```Shell
