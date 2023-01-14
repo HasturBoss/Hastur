@@ -41,7 +41,7 @@ ufw allow 9090
 Open browser, input https://<ip>:9090
 ```
 
-* Use shellinabox
+* Use shellinabox(Android input method is not supported!)
 ```Shell
 apt install openssh-client openssh-server openssl shellinabox ufw
 ufw allow 4200
