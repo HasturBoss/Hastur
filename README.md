@@ -27,7 +27,7 @@ cp oled.py ~/*.py
 * * * * * python3 ~/*.py
 ```
 
-* Use luma.oled of python3
+* Use rpi.gpio of python3
 ```Shell
 pip3 install RPi.GPIO
 cp temp.py ~/*.py
