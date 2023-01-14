@@ -13,6 +13,9 @@ git pull --rebase origin main
 git push -u origin main
 ```
 
+* Use curl
+curl -O -x socks5://127.0.0.1:10808 https://raw.githubusercontent.com/HasturBoss/HasturBoss.github.io/main/*.py
+
 * Use FTP
 ```Shell
 apt install vsftpd
