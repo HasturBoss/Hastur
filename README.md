@@ -30,6 +30,9 @@ apt install libopenjp2-7-dev libtiff5 i2c-tools
 pip3 install psutil luma.oled
 cp oled.py ~/*.py
 * * * * * python3 ~/*.py
+And
+cp opts.py ~/*.py
+* * * * * python3 ~/*.py
 ```
 
 * Use rpi.gpio of python3
