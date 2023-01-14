@@ -14,7 +14,9 @@ git push -u origin main
 ```
 
 * Use curl
+```Shell
 curl -O -x socks5://127.0.0.1:10808 https://raw.githubusercontent.com/HasturBoss/HasturBoss.github.io/main/*.py
+```
 
 * Use FTP
 ```Shell
