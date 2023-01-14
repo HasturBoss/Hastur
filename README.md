@@ -13,11 +13,25 @@ git pull --rebase origin main
 git push -u origin main
 ```
 
-* Use luma.oled of python3, after install Tender
+* Use FTP
+```Shell
+apt install vsftpd
+vim /etc/vsftpd.conf
+```
+
+* Use luma.oled of python3
 ```Shell
 apt install libopenjp2-7-dev libtiff5
 pip3 install psutil luma.oled
 cp oled.py ~/*.py
+* * * * * python3 ~/*.py
+```
+
+* Use luma.oled of python3
+```Shell
+pip3 install RPi.GPIO
+cp temp.py ~/*.py
+* * * * * python3 ~/*.py
 ```
 
 * Use cockpit
