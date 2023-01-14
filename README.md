@@ -13,6 +13,12 @@ git pull --rebase origin main
 git push -u origin main
 ```
 
+* Use cockpit
+```Shell
+apt install cockpit ufw
+ufw allow 9090
+Open browser, input https://<ip>:9090
+
 * Use shellinabox
 ```Shell
 apt install openssh-client openssh-server openssl shellinabox ufw
