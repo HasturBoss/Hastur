@@ -26,7 +26,7 @@ vim /etc/vsftpd.conf
 
 * Use luma.oled of python3
 ```Shell
-apt install libopenjp2-7-dev libtiff5
+apt install libopenjp2-7-dev libtiff5 i2c-tools
 pip3 install psutil luma.oled
 cp oled.py ~/*.py
 * * * * * python3 ~/*.py
