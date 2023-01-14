@@ -22,7 +22,7 @@ from datetime import datetime
 if os.name != 'posix':
     sys.exit(f'{os.name} platform is not supported')
 
-from demo_opts import get_device
+from opts import get_device
 from luma.core.render import canvas
 from PIL import ImageFont
 
