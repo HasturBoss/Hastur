@@ -1,114 +1,130 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# Copyright (c) 2014-2022 Richard Hull and contributors
-# See LICENSE.rst for details.
-# PYTHON_ARGCOMPLETE_OK
-
-"""
-Display basic system information.
-
-Needs psutil (+ dependencies) installed::
-
-  $ sudo apt-get install python-dev
-  $ sudo -H pip install psutil
-"""
-
-import os
-import sys
+# Copyright (c) 2017 Adafruit Industries
+# Author: Tony DiCola & James DeVito
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
 import time
-from pathlib import Path
-from datetime import datetime
 
-if os.name != 'posix':
-    sys.exit(f'{os.name} platform is not supported')
+import Adafruit_GPIO.SPI as SPI
+import Adafruit_SSD1306
 
-from opts import get_device
-from luma.core.render import canvas
+from PIL import Image
+from PIL import ImageDraw
 from PIL import ImageFont
 
-try:
-    import psutil
-except ImportError:
-    print("The psutil library was not found. Run 'sudo -H pip install psutil' to install it.")
-    sys.exit()
+import subprocess
+
+# Raspberry Pi pin configuration:
+RST = None     # on the PiOLED this pin isnt used
+# Note the following are only used with SPI:
+DC = 23
+SPI_PORT = 0
+SPI_DEVICE = 0
+
+# Beaglebone Black pin configuration:
+# RST = 'P9_12'
+# Note the following are only used with SPI:
+# DC = 'P9_15'
+# SPI_PORT = 1
+# SPI_DEVICE = 0
+
+# 128x32 display with hardware I2C:
+disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+
+# 128x64 display with hardware I2C:
+# disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+
+# Note you can change the I2C address by passing an i2c_address parameter like:
+# disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3C)
+
+# Alternatively you can specify an explicit I2C bus number, for example
+# with the 128x32 display you would use:
+# disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST, i2c_bus=2)
+
+# 128x32 display with hardware SPI:
+disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST, dc=DC, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=8000000))
+
+# 128x64 display with hardware SPI:
+# disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, dc=DC, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=8000000))
+
+# Alternatively you can specify a software SPI implementation by providing
+# digital GPIO pin numbers for all the required display pins.  For example
+# on a Raspberry Pi with the 128x32 display you might use:
+# disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST, dc=DC, sclk=18, din=25, cs=22)
+
+# Initialize library.
+disp.begin()
+
+# Clear display.
+disp.clear()
+disp.display()
+
+# Create blank image for drawing.
+# Make sure to create image with mode '1' for 1-bit color.
+width = disp.width
+height = disp.height
+image = Image.new('1', (width, height))
+
+# Get drawing object to draw on image.
+draw = ImageDraw.Draw(image)
+
+# Draw a black filled box to clear the image.
+draw.rectangle((0,0,width,height), outline=0, fill=0)
+
+# Draw some shapes.
+# First define some constants to allow easy resizing of shapes.
+padding = -2
+top = padding
+bottom = height-padding
+# Move left to right keeping track of the current x position for drawing shapes.
+x = 0
 
 
-# TODO: custom font bitmaps for up/down arrows
-# TODO: Load histogram
+# Load default font.
+font = ImageFont.load_default()
 
+# Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
+# Some other nice fonts to try: http://www.dafont.com/bitmap.php
+# font = ImageFont.truetype('Minecraftia.ttf', 8)
 
-def bytes2human(n):
-    """
-    >>> bytes2human(10000)
-    '9K'
-    >>> bytes2human(100001221)
-    '95M'
-    """
-    symbols = ('K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y')
-    prefix = {}
-    for i, s in enumerate(symbols):
-        prefix[s] = 1 << (i + 1) * 10
-    for s in reversed(symbols):
-        if n >= prefix[s]:
-            value = int(float(n) / prefix[s])
-            return '%s%s' % (value, s)
-    return f"{n}B"
+while True:
 
+    # Draw a black filled box to clear the image.
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
-def cpu_usage():
-    # load average, uptime
-    uptime = datetime.now() - datetime.fromtimestamp(psutil.boot_time())
-    av1, av2, av3 = os.getloadavg()
-    return "Ld:%.1f %.1f %.1f Up: %s" \
-        % (av1, av2, av3, str(uptime).split('.')[0])
+    # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
+    cmd = "hostname -I | cut -d\' \' -f1"
+    IP = subprocess.check_output(cmd, shell = True )
+    cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
+    CPU = subprocess.check_output(cmd, shell = True )
+    cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
+    MemUsage = subprocess.check_output(cmd, shell = True )
+    cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
+    Disk = subprocess.check_output(cmd, shell = True )
 
+    # Write two lines of text.
 
-def mem_usage():
-    usage = psutil.virtual_memory()
-    return "Mem: %s %.0f%%" \
-        % (bytes2human(usage.used), 100 - usage.percent)
+    draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
+    draw.text((x, top+8),     str(CPU), font=font, fill=255)
+    draw.text((x, top+16),    str(MemUsage),  font=font, fill=255)
+    draw.text((x, top+25),    str(Disk),  font=font, fill=255)
 
-
-def disk_usage(dir):
-    usage = psutil.disk_usage(dir)
-    return "SD:  %s %.0f%%" \
-        % (bytes2human(usage.used), usage.percent)
-
-
-def network(iface):
-    stat = psutil.net_io_counters(pernic=True)[iface]
-    return "%s: Tx%s, Rx%s" % \
-           (iface, bytes2human(stat.bytes_sent), bytes2human(stat.bytes_recv))
-
-
-def stats(device):
-    # use custom font
-    font_path = str(Path(__file__).resolve().parent.joinpath('fonts', 'C&C Red Alert [INET].ttf'))
-    font2 = ImageFont.truetype(font_path, 12)
-
-    with canvas(device) as draw:
-        draw.text((0, 0), cpu_usage(), font=font2, fill="white")
-        if device.height >= 32:
-            draw.text((0, 14), mem_usage(), font=font2, fill="white")
-
-        if device.height >= 64:
-            draw.text((0, 26), disk_usage('/'), font=font2, fill="white")
-            try:
-                draw.text((0, 38), network('wlan0'), font=font2, fill="white")
-            except KeyError:
-                # no wifi enabled/available
-                pass
-
-
-def main():
-    while True:
-        stats(device)
-        time.sleep(5)
-
-
-if __name__ == "__main__":
-    try:
-        device = get_device()
-        main()
-    except KeyboardInterrupt:
-        pass
+    # Display image.
+    disp.image(image)
+    disp.display()
+    time.sleep(.1)
