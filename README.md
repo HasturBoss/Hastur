@@ -24,21 +24,20 @@ apt install vsftpd
 vim /etc/vsftpd.conf
 ```
 
-* Use luma.oled of python3
+* Use SSD1306 of python3
 ```Shell
-apt install libopenjp2-7-dev libtiff5 i2c-tools
-pip3 install psutil luma.oled
-cp oled.py ~/*.py
-* * * * * python3 ~/*.py
-And
-cp opts.py ~/*.py
-* * * * * python3 ~/*.py
+apt install i2c-tools
+raspi-config
+pip3 install Adafruit_SSD1306
+python3 oled.py
 ```
 
 * Use rpi.gpio of python3
 ```Shell
+apt install i2c-tools
+raspi-config
 pip3 install RPi.GPIO
-cp temp.py ~/*.py
+python3 temp.py
 * * * * * python3 ~/*.py
 ```
 
