@@ -12,7 +12,7 @@ def cpu_temp():
 
 
 def main():
-    channel = 18
+    channel = 15
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
