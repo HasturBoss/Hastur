@@ -30,7 +30,7 @@ apt install i2c-tools
 raspi-config
 pip3 install Adafruit_SSD1306
 python3 oled.py
-* * * * * python3 ~/*.py
+* * * * * python3 ~/*.py &
 ```
 
 * Use rpi.gpio of python3
@@ -39,7 +39,7 @@ apt install i2c-tools
 raspi-config
 pip3 install RPi.GPIO
 python3 temp.py
-* * * * * python3 ~/*.py
+* * * * * python3 ~/*.py &
 ```
 
 * Use cockpit
