@@ -1,8 +1,13 @@
+# raspberry install pi-os of bullseye
+ssh
+userconf
+wpa_supplicant.conf
+
 readelf -A /proc/self/exe | grep Tag_ABI_VFP_arg
 # if have (Tag_ABI_VFP_args: VFP registers) :
 # it is armhf, vice-versa (armel)
 
-#bluetooth
+# bluetooth
 sudo apt update
 sudo apt upgrade
 sudo apt install bluetooth pi-bluetooth bluez blueman
