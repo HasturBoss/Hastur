@@ -31,6 +31,10 @@ raspi-config
 pip3 install Adafruit_SSD1306
 python3 oled.py
 
+vim /etc/rc.local
+python3 ~/*.py &
+
+OR
 vim /etc/crontab
 * * * * * root python3 ~/*.py &
 ```
@@ -42,6 +46,10 @@ raspi-config
 pip3 install RPi.GPIO
 python3 temp.py
 
+vim /etc/rc.local
+python3 ~/*.py &
+
+OR
 vim /etc/crontab
 * * * * * root python3 ~/*.py &
 ```
