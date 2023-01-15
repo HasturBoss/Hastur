@@ -40,7 +40,7 @@ vim /etc/crontab
 * * * * * root python3 ~/*.py &
 ```
 
-* Use rpi.gpio of python3
+* Use rpi.gpio of python3, Connect the triode（PNP）and fan(GPIO.15)!
 ```Shell
 apt install i2c-tools
 raspi-config
