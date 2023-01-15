@@ -31,6 +31,7 @@ raspi-config
 pip3 install Adafruit_SSD1306
 python3 oled.py
 
+Your command should be added before: exit 0!
 vim /etc/rc.local
 python3 ~/*.py &
 
@@ -46,6 +47,7 @@ raspi-config
 pip3 install RPi.GPIO
 python3 temp.py
 
+Your command should be added before: exit 0!
 vim /etc/rc.local
 python3 ~/*.py &
 
