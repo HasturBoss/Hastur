@@ -1,6 +1,14 @@
 # HasturBoss.github.io
 Blob and Web
 
+* Debian terminal connect wifi
+```Shell
+wpa_passphrase <wifi_id> <wifi_pwd> >> /etc/wpa_supplicant/wpa_supplicant.conf
+wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
+dhclient <drivers>
+ip addr
+```
+
 * Use git
 ```Git
 git init
