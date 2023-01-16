@@ -7,6 +7,9 @@ wpa_passphrase <wifi_id> <wifi_pwd> >> /etc/wpa_supplicant/wpa_supplicant.conf
 wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 dhclient <drivers>
 ip addr
+apt install rfkill
+rfkill list
+rfkill unblock all
 ```
 
 * Use git
