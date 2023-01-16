@@ -22,6 +22,11 @@ git branch -a
 git remote add origin git@github.com:HasturBoss/<Res>.git
 git pull --rebase origin main
 git push -u origin main
+
+git config --global https.proxy http://127.0.0.1:10809
+git config --global https.proxy https://127.0.0.1:10809
+git config --global --unset http.proxy
+git config --global --unset https.proxy
 ```
 
 * Use curl
