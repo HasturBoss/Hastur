@@ -8,6 +8,7 @@ wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 dhclient <drivers>
 ip addr
 apt install rfkill
+or: dpkg -i rfkill.deb
 rfkill list
 rfkill unblock all
 ```
