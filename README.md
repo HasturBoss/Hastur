@@ -9,6 +9,13 @@ wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 dhclient <drivers>
 // Static ip address setting
 nmtui
+or: nano /etc/network/interfaces
+auto <drivers>
+iface <drivers> inet static
+address <ip>
+netmask 255.255.255.0
+gateway 192.168.1.1
+dns-nameservers 192.168.1.1
 // IP, gateway, DNS...setting
 ip addr
 apt install rfkill
@@ -17,7 +24,10 @@ rfkill list
 rfkill unblock all
 // Unlock network...setting
 vim /etc/rc.local
+wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
+dhclient <drivers>
 rfkill unblock all &
+// exit 0
 ```
 
 * Use git
