@@ -1,0 +1,211 @@
+1.
+# install&&config
+Enable or disable Windows functions:Hyper-V and WSL(Windows Subsystem Linux)
+!OR Use PowerShell("dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart" and "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart")
+Run PowerShell("wsl --set-default-version 2")
+Check WSL2("wsl -l -o" and "wsl -l -v")
+Update to WSL2(install "Linux\InPackage\WSL2.msi")
+Install WSL2("wsl --install -d <Distribution Name>")(For example(Name): Ubuntu-20.04)
+!Uninstall WSL2("wslconfig /l","wslconfig /u <Distribution Name>")
+Uninstall WSL2("wsl --unregister <Distribution Name>")
+!Reboot wsl.vhdx("Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux")
+!Reboot computer("Restart-Computer")
+Forget PassWord("wsl -u root","passwd <username>")
+From win to unix("\\wsl$\<Distribution Name>","\\wsl$\<Distribution Name>\home\<username>")
+!Setting root to start on Linux("cd C:\Users\<username>\AppData\Local\Microsoft\WindowsApps","dir" and "<Distribution Name> config --default-user root")
+!Set proxy and run unix(" cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' "," export ALL_PROXY="http://nameserver:port" and export ALL_PROXY="https://nameserver:port" ")(Edit ".bashrc")
+Set proxy to host address from WSL2(look for "proxy&&github.txt")(copy "Linux\InPackage\proxy.sh" to "/home/<username>/proxy.sh",if it is <username>,else it copy to "/root/proxy.sh")
+Copy .wslconfig to "~\<username>\.wslconfig" for win("Linux\InPackage\.wslconfig")
+Shutdown to WSL2("net stop LxssManager")(Run PowerShell will be used by Administration) or ("wsl --shutdown")
+Start to WSL2("net start LxssManager")(Run PowerShell will be used by Administration)
+!Run ("Linux\InPackage\DDI3.exe") install "Docker Desktop"
+!Look for "start&&docker.txt",and have done it( or "Restart-Computer")
+
+2.
+# proxy&&github
+Set github connection(look for "vim.txt")
+Set "proxy.sh"("chmod +x proxy.sh")
+# Edit proxy.sh
+(
+#!/bin/bash
+# echo " HOST ip: $(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }') "
+# echo " WSL2 ip: $(hostname -I | awk '{print $1}') "
+HOST=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+WSL2=$(hostname -I | awk '{print $1}')
+PROXY_HTTP="http://${HOST}:10809"
+# edit function
+function Cat(){
+	echo "HOST ip: ${HOST}"
+	echo "WSL2 ip: ${WSL2}"
+	echo "PROXY_HTTP: ${PROXY_HTTP}"
+}
+function Set(){
+	export http_proxy="${PROXY_HTTP}"
+	export https_proxy="${PROXY_HTTP}"
+	git config --system http.proxy "${PROXY_HTTP}"
+	git config --system https.proxy "${PROXY_HTTP}"
+	echo "The Proxy environment has been set!"
+}
+function Unset(){
+	unset http_proxy
+	unset https_proxy
+	git config --system --unset http.proxy "${PROXY_HTTP}"
+	git config --system --unset https.proxy "${PROXY_HTTP}"
+	echo "The Proxy environment has not been set!"
+}
+if [ "$1" = "set" ]; then
+	Set
+elif [ "$1" = "unset" ]; then
+	Unset
+elif [ "$1" = "cat" ]; then
+	Cat
+else
+	echo "Incorrect arguments."
+fi
+)
+
+3.
+# start&&docker
+Run "Docker Desktop"("Setting -> General -> Use the WSL 2 based engine","Setting -> Resource -> WSL INTEGRATION")
+Docker Command("docker --version","docker image ls --all","docker container ls --all " and "docker info")
+!Docker Engine 
+(
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "10GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}
+
+)
+
+4.
+# system&&config
+!Create folder("mkdir .net","cd .net")
+!Install .NET on Ubuntu 20.04 LTS("wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+!sudo dpkg -i packages-microsoft-prod.deb
+!rm packages-microsoft-prod.deb")
+!Install .NET Core on Ubuntu 20.04 LTS("sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-6.0")
+!Install .NET Core on Ubuntu 20.04 LTS("sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-runtime-6.0")
+Create folder("mkdir .genie","cd .genie")
+Install genie("git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git --recursive /home/<username>/.git/packages/genie","cd /home/<username>/.git/packages/genie" and "bash ubuntu-wsl2-systemd-script.sh")
+Use systemctl command(start, stop, enable, disable)
+Look for "Linux\BashShell\systemctl&&config.txt"(must be look)
+!System has not been booted with systemd as init system (PID 1)("apt update && apt install -yqq daemonize dbus-user-session fontconfig","daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target","exec nsenter -t $(pidof systemd) -a su - $LOGNAME" and "snap version")
+Finally,system config("systemctl daemon-reload")(Must be execute: "daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target" and "exec nsenter -t $(pidof systemd) -a su - $LOGNAME")(copy "Linux\InPackage\daemonize.sh" to "WSL2")
+Advise it edit "/root/.bashrc"("bash <"daemonize.sh" of path>")
+
+5.
+# systemctl&&config
+# Init systemctl
+systemctl daemon-reload
+# Show available units all.
+systemctl list-unit-files
+# Show useless units all.
+systemctl list-units
+# Show failed units all.
+systemctl --failed
+# Check out service whether it is available.
+systemctl is-enabled <service>
+# Check out service whether to run.
+systemctl status <service>
+# Show units all.
+systemctl list-unit-files --type=service
+# Kill process if it is running.
+systemctl kill <name>
+systemctl status <name>
+# Enter GUI for level 5.
+systemctl isolate runlevel5.target
+or
+systemctl isolate graphical.target
+
+# Edit service(default)("/lib/systemd/system")
+(
+
+[Unit]
+Description=<name> Service
+After=multi-user.target
+
+[Service]
+RemainAfterExit=True
+ExecStart=bash /home/<username>/<*.sh> <arguments>
+
+[Install]
+WantedBy=default.target
+
+)
+
+# If system was WSL2,it would use service.
+For example: service <name> start ...
+
+
+# Delete except elect file.
+shopt -s extglob
+rm !(<file2>|<file2>)
+shopt -u extglob
+
+6.
+# windows&&key
+Microsoft Windows 95 Readme/Product Key
+© 21 December 2017
+7:54 PM
+-----------------------------------------
+
+Hello! Thank you for downloading Microsoft Windows 95! I appriciate your interest
+in this product. Here is the key and important information:
+
+Windows 95 OSR2:
+34698-OEM-0039682-72135
+
+-----------------------------------------
+
+This is a legal copy of Windows 95. It is fully legal with no piracy.
+Please, if there are any questions or notices I need to know about, feel free to post so in 
+the comments section.
+Thanks again!
+
+-Microshoft
+
+7.
+# wsl2&&kernel
+# Settings apply across all Linux distros running on WSL 2
+[wsl2]
+# Limits VM memory to use no more than 4 GB, this can be set as whole numbers using GB or MB
+memory=4GB 
+# Sets the VM to use two virtual processors
+processors=2
+# Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
+kernel=C:\\temp\\myCustomKernel
+# Sets additional kernel parameters, in this case enabling older Linux base images such as Centos 6
+kernelCommandLine = vsyscall=emulate
+# Sets amount of swap storage space to 8GB, default is 25% of available RAM
+swap=8GB
+# Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
+swapfile=C:\\temp\\wsl-swap.vhdx
+# Disable page reporting so WSL retains all allocated memory claimed from Windows and releases none back when free
+pageReporting=false
+# Turn off default connection to bind WSL 2 localhost to Windows localhost
+localhostforwarding=true
+# Disables nested virtualization
+nestedVirtualization=false
+# Turns on output console showing contents of dmesg when opening a WSL 2 distro for debugging
+debugConsole=true
+
+8.
+# 

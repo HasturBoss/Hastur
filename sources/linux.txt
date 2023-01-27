@@ -1,0 +1,96 @@
+1.
+# It's probably import "bbr"  module (bbr.txt)
+# version >= 4.9.0
+uname -a
+echo “net.core.default_qdisc=fq” >> /etc/sysctl.conf
+echo “net.ipv4.tcp_congestion_control=bbr” >> /etc/sysctl.conf
+sysctl -p
+sysctl net.ipv4.tcp_available_congestion_control
+lsmod | grep bbr (or "sysctl net.ipv4.tcp_available_congestion_control")
+
+2.
+# dpkg insatll option
+dpkg -i (install)
+dpkg -r (remove)
+dpkg -P (remove && relevant file)
+
+3.
+# WampServer
+# win -> server(localhost) -> wampapache64 && wampsqld64 || wampmariadb64 (manual to automatic)
+# onclick WampServer.ico -> search Apache/http.conf -> open httpd.conf
+
+# Listen: Allows you to bind Apache to specific IP addresses and/or ports, instead of the default. 
+# Listen 0.0.0.0:8080
+# Listen [::0]:8080
+
+# DirectoryIndex: sets the file that Apache will serve if a directory is requested.
+# <IfModule dir_module>
+#    DirectoryIndex index.php index.php3 index.html index.htm
+# </IfModule>
+
+# !!apache:You don't have permission to access /test.php on this server.
+#<Directory />
+#    Options FollowSymLinks
+#    AllowOverride None
+#    Order deny,allow
+#    Deny from all
+#</Directory>
+
+#  DocumentRoot: The directory out of which you will serve you	/
+# documents. By default, all requests are taken from this directory, but	/
+# symbolic links and aliases may be used to point to other locations.
+# DocumentRoot "${INSTALL_DIR}/www"
+# reboot
+
+4.
+# kernel/modules (Edit Makefile && make)
+/usr/src/linux-headers-$(uname -r)
+/usr/src/linux-headers-`uname -r`
+# install mod
+# insmod *.ko 
+# module verification failed: signature and/or required key missing - tainting kernel
+# /usr/src/linux-headers-`uname -r`/scripts/sign-file sha512 /usr/src/linux-headers-`uname -r`/certs/signing_key.pem \
+# /usr/src/linux-headers-`uname -r`/certs/signing_key.x509
+# not essential £¡
+# The modinfo command displays their parameter information. 
+# However, this command does not work with the built-in module.
+# errors: "modinfo: ERROR: Module * not found." 
+# You can ls (/sys/module/*)
+
+# Example:	demo.c
+# obj-m :=demo.o
+# KERNEL :=/usr/src/linux-headers-`uname -r`
+# PWD :=$(shell pwd)
+# modules :
+#            $(MAKE) -C $(KERNEL) M=$(PWD) modules
+#.PHONEY:clean
+#        clean :
+#            rm -f *.o *.ko
+
+5.
+# cat version
+/proc/version
+/etc/os-release
+/proc/cpuinfo
+lsb_release -a
+
+6.
+192.168.1.1
+
+ip r | grep default
+
+/etc/dhcpcd.conf
+
+interface <NETWORK>
+static ip_address=<STATICIP>/24
+static routers=<ROUTERIP>
+static domain_name_servers=<DNSIP>
+
+/etc/network/interfaces
+
+#auto wlan0
+#iface wlan0 inet dhcp
+iface wlan0 inet manual
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+7.
