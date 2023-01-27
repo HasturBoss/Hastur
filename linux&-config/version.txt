@@ -1,5 +1,0 @@
-/proc/version
-/etc/os-release
-/proc/cpuinfo
-
-lsb_release -a
