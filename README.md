@@ -49,7 +49,7 @@ git config --global --unset https.proxy
 
 * Use curl
 ```Shell
-curl -O -x socks5://127.0.0.1:10808 https://raw.githubusercontent.com/HasturBoss/HasturBoss.github.io/main/*.py
+curl -O -x http://127.0.0.1:7890 https://raw.githubusercontent.com/HasturBoss/HasturBoss.github.io/main/*.py
 ```
 
 * Use FTP
