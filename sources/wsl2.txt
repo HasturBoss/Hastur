@@ -32,7 +32,7 @@ Set "proxy.sh"("chmod +x proxy.sh")
 # echo " WSL2 ip: $(hostname -I | awk '{print $1}') "
 HOST=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 WSL2=$(hostname -I | awk '{print $1}')
-PROXY_HTTP="http://${HOST}:10809"
+PROXY_HTTP="http://${HOST}:7890"
 # edit function
 function Cat(){
 	echo "HOST ip: ${HOST}"
