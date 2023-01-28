@@ -1,6 +1,7 @@
 # HasturBoss.github.io
 Blob and Web
 
+* date -s "yy-mm-dd hh:mm:ss"
 * Debian terminal connect wifi
 ```Shell
 // Dynamic ip address setting
