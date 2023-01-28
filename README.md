@@ -94,6 +94,9 @@ vim /etc/crontab
 apt install cockpit ufw
 ufw allow 9090
 Open browser, input https://<ip>:9090
+If using clash, please modify the port: 
+nano /usr/lib/systemd/system/cockpit.socket
+For example: 9090 > 9099
 ```
 
 * Use shellinabox(Android input method is not supported!)
@@ -103,7 +106,7 @@ ufw allow 4200
 Open browser, input https://<ip>:4200
 ```
 
-* Use clash
+* Use Clash: http://clash.razord.top/
 ```
 wget -O <https://shuttle.gt-in.com/clientarea.php>
 Copy config.yaml to /etc/calsh
