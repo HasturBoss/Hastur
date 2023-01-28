@@ -1,5 +1,5 @@
-# HasturBoss.github.io
-Blob and Web
+# HasturBoss Blob and Web
+![LICENSE](https://img.shields.io/github/license/HasturBoss/Hastur)
 
 * date -s "yy-mm-dd hh:mm:ss"
 * Debian terminal connect wifi
