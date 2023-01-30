@@ -25,9 +25,9 @@ rfkill list
 rfkill unblock all
 // Unlock network...setting
 vim /etc/rc.local
+rfkill unblock all
 wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 dhclient <drivers>
-rfkill unblock all &
 // exit 0
 ```
 
