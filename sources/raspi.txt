@@ -3,6 +3,16 @@ ssh
 userconf
 wpa_supplicant.conf
 
+# audio
+sudo raspi-config
+reboot
+
+# chromium
+chromium-browser --proxy-server="https://proxy-ip:proxy-port"
+# startup
+nano ~/.bashrc
+alias chromium='chromium-browser --proxy-server="https://proxy-ip:proxy-port"'
+
 readelf -A /proc/self/exe | grep Tag_ABI_VFP_arg
 # if have (Tag_ABI_VFP_args: VFP registers) :
 # it is armhf, vice-versa (armel)
