@@ -13,6 +13,12 @@ address <ip1>
 netmask 255.255.255.0
 gateway <ip2>
 dns-nameservers <ip2>
+// notepad cover
+nano /etc/systemd/logind.conf
+# HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+# HandleLidSwitchDocked=ignore
+# reboot
 ```
 
 * Use git
