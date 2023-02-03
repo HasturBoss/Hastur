@@ -3,6 +3,7 @@
 
 * clash port: 7890
 * date -s "yy-mm-dd hh:mm:ss"
+* rm /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
 
 * Debian terminal connect network
 ```Shell
