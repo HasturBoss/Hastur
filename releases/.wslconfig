@@ -1,4 +1,0 @@
-[wsl2]
-memory=3 GB
-processors=1
-localhostForwarding=true
