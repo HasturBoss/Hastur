@@ -1,34 +1,18 @@
 # HasturBoss Blob and Web
 ![LICENSE](https://img.shields.io/github/license/HasturBoss/Hastur)
 
+* clash port: 7890
 * date -s "yy-mm-dd hh:mm:ss"
-* Debian terminal connect wifi
+
+* Debian terminal connect network
 ```Shell
-// Dynamic ip address setting
-wpa_passphrase <wifi_id> <wifi_pwd> >> /etc/wpa_supplicant/wpa_supplicant.conf
-wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
-dhclient <drivers>
-// Static ip address setting
-nmtui
-or: nano /etc/network/interfaces
+nano /etc/network/interfaces
 auto <drivers>
 iface <drivers> inet static
-address <ip>
+address <ip1>
 netmask 255.255.255.0
-gateway 192.168.1.1
-dns-nameservers 192.168.1.1
-// IP, gateway, DNS...setting
-ip addr
-apt install rfkill
-or: dpkg -i rfkill.deb
-rfkill list
-rfkill unblock all
-// Unlock network...setting
-vim /etc/rc.local
-rfkill unblock all
-wpa_supplicant -i <drivers> -c /etc/wpa_supplicant/wpa_supplicant.conf -B
-dhclient <drivers>
-// exit 0
+gateway <ip2>
+dns-nameservers <ip2>
 ```
 
 * Use git
@@ -65,12 +49,12 @@ apt install i2c-tools
 raspi-config
 pip3 install Adafruit_SSD1306
 python3 oled.py
-
-Your command should be added before: exit 0!
+// Your command should be added before:
+// exit 0
 vim /etc/rc.local
 python3 ~/*.py &
 
-OR
+OR:
 vim /etc/crontab
 * * * * * root python3 ~/*.py &
 ```
@@ -81,12 +65,12 @@ apt install i2c-tools
 raspi-config
 pip3 install RPi.GPIO
 python3 temp.py
-
-Your command should be added before: exit 0!
+// Your command should be added before:
+// exit 0
 vim /etc/rc.local
 python3 ~/*.py &
 
-OR
+OR:
 vim /etc/crontab
 * * * * * root python3 ~/*.py &
 ```
@@ -99,13 +83,6 @@ Open browser, input https://<ip>:9090
 If using clash, please modify the port: 
 nano /usr/lib/systemd/system/cockpit.socket
 For example: 9090 > 9099
-```
-
-* Use shellinabox(Android input method is not supported!)
-```Shell
-apt install openssh-client openssh-server openssl shellinabox ufw
-ufw allow 4200
-Open browser, input https://<ip>:4200
 ```
 
 * Use Clash: http://clash.razord.top/
