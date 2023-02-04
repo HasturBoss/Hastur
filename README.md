@@ -49,7 +49,7 @@ curl -O -x http://127.0.0.1:7890 https://raw.githubusercontent.com/HasturBoss/Ha
 ```Shell
 apt install vsftpd
 vim /etc/vsftpd.conf
-anonymous_enable=NO
+# anonymous_enable=NO
 # local_enable=YES
 ```
 
