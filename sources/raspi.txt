@@ -8,8 +8,9 @@ sudo raspi-config
 reboot
 
 # chromium
-su pi
 chromium-browser --proxy-server="http://proxy-ip:proxy-port"
+su pi: nano /home/pi/.bashrc
+alias chromium='chromium-browser --proxy-server=http://proxy-ip:proxy-port'
 
 readelf -A /proc/self/exe | grep Tag_ABI_VFP_arg
 # if have (Tag_ABI_VFP_args: VFP registers) :
