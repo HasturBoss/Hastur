@@ -4,7 +4,7 @@ title: About
 tagline: Yor's Contents
 permalink: /about.html
 ref: about
-order: 0
+order: 2
 ---
 
 Yor Forger (ヨル・フォージャー, Yoru Fōjā?), née Briar (ブライア, Buraia?) is the tritagonist of the SPY x FAMILY series. While she works as an ordinary clerk at Berlint City Hall, she also leads a secret life as a Garden assassin with the code name "Thorn Princess" (〈いばら姫〉).
