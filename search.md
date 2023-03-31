@@ -6,7 +6,7 @@ ref: search
 order: 1
 ---
 
-[![png](/images/search/google.png "click go to google")](https://www.google.com)
+[![png](/images/search/google.png)](https://www.google.com)
 
 This site blog content search engine:
 
