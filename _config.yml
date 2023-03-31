@@ -15,3 +15,5 @@ plugins:
   - jekyll-feed
 
 google_analytics:
+
+header_page_refs: ['search', 'about']
