@@ -3,7 +3,7 @@ layout: page
 title: Search
 tagline: Yor's Secret Box
 ref: search
-order: 0
+order: 1
 ---
 
 [![png](/images/search/google.png "click go to google")](https://www.google.com)
