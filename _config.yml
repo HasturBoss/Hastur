@@ -16,14 +16,12 @@ description: Android开发者|努力编程的羊
 # baseurl should be an empty string
 #baseurl: ""
 
-# --- Navigation bar options --- #
-
 # List of links in the navigation bar
 navbar-links:
-  主页: "https://zoharandroid.github.io"
+  主页: "https://hasturboss.github.io//Hastur"
   博客: 
-   - 分类: "https://zoharandroid.github.io/categories/"
-   - 标签: "https://zoharandroid.github.io/tags/"
+   - 分类: "https://hasturboss.github.io//Hastur/categories/"
+   - 标签: "https://hasturboss.github.io//Hastur/tags/"
   项目:
     - GitHub: "https://github.com/ZoharAndroid"
     - HelloOffer: "https://github.com/ZoharAndroid/HelloOffer"
