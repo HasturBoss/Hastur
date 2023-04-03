@@ -2,7 +2,6 @@
 layout: page
 title: Search
 tagline: Yor's Secret Box
-ref: search
 order: 1
 ---
 
