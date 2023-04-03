@@ -1,0 +1,19 @@
+title: HasturBoss's Blob
+email: hasturboss@qq.com
+description: >- # this means to ignore newlines until "baseurl:"
+  The road is long and long, and I will search up and down.
+show_downloads: true
+baseurl: "/Hastur" # the subpath of your site, e.g. /blog
+url: "https://hasturboss.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+# cayman-blog date format
+cayman-blog:
+  date_format: "%b %-d, %Y"
+
+# Build settings
+plugins:
+  - jekyll-feed
+
+google_analytics:
+
+header_page_refs: ['search', 'about']
