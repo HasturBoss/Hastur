@@ -1,8 +1,6 @@
 ---
 layout: page
 title: Search
-tagline: Yor's Secret Box
-order: 1
 ---
 
 [![png](/assets/image/search/google.png)](https://www.google.com)
