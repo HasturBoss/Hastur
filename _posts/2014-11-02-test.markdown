@@ -1,0 +1,24 @@
+---
+layout: post
+title: "树莓派烧录系统至SD卡"
+date: 2023-4-05
+categories: jekyll update
+---
+
+目前来说，树莓派的系统烧录大体上可分为两大类，第一类使用官方的烧录工具Raspberry Pi Imager，第二类是使用第三方烧录工具。两者的区别在于前者是官方提供，操作便捷，系统选择便利；后者的优势是可烧录的系统不局限于官方提供的系统，选择多样性但是需要自己找寻系统。
+
+Jekyll also offers powerful support for code snippets:
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+# => prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+
+[jekyll]:      http://jekyllrb.com
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-help]: https://github.com/jekyll/jekyll-help
