@@ -26,6 +26,7 @@ url: "https://hasturboss.github.io" # the base hostname & protocol for your site
 #   - { platform: twitter,        user_url: "https://twitter.com/jekyllrb" }
 #   - { platform: youtube,        user_url: "https://www.youtube.com/jekyll" }
 minima:
+  skin: default
   social_links:
     - { platform: github,  user_url: "https://github.com/HasturBoss/Hastur" }
     - { platform: youtube,  user_url: "https://www.youtube.com/@user-yor" }
