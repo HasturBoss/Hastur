@@ -5,6 +5,7 @@ author:
 description: >- # this means to ignore newlines until "baseurl:"
   The road is long and long, and I will search up and down.
   Human beings are powerful and weak, humble and sublime, perceptive and often blind.
+  (hasturboss)
 baseurl: "/Hastur" # the subpath of your site, e.g. /blog
 url: "https://hasturboss.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
