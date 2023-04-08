@@ -1,10 +1,11 @@
 title: HasturBoss's Blob
 author:
-  name: Microsoft Hastur
+  name: Hastur Boss
   email: hasturboss@qq.com
 description: >- # this means to ignore newlines until "baseurl:"
   The road is long and long, and I will search up and down.
-  Silence, silence! Unless we burst out, we shall perish in this silence.
+  Silence! Unless we burst out, we shall perish in this silence.
+  Human beings are powerful and weak, humble and sublime, perceptive and often blind.
 baseurl: "/Hastur" # the subpath of your site, e.g. /blog
 url: "https://hasturboss.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -14,7 +15,7 @@ url: "https://hasturboss.github.io" # the base hostname & protocol for your site
 #   - { platform: facebook,       user_url: "https://www.facebook.com/jekyll" }
 #   - { platform: flickr,         user_url: "https://www.flickr.com/photos/jekyll" }
 #   - { platform: github,         user_url: "https://github.com/jekyll/minima" }
-#   - { platform: google_scholar, user_url: "https://scholar.google.com/citations?user=qc6CJjYAAAAJ" }
+#   - { platform: google,         user_url: "https://scholar.google.com/citations?user=qc6CJjYAAAAJ" }
 #   - { platform: instagram,      user_url: "https://www.instagram.com/jekyll" }
 #   - { platform: keybase,        user_url: "https://keybase.io/jekyll" }
 #   - { platform: linkedin,       user_url: "https://www.linkedin.com/in/jekyll" }
@@ -28,6 +29,7 @@ minima:
   social_links:
     - { platform: github,  user_url: "https://github.com/HasturBoss/Hastur" }
     - { platform: youtube,  user_url: "https://www.youtube.com/@user-yor" }
+    - { platform: facebook,  user_url: "https://www.facebook.com/profile.php?id=100051853814324" }
 
 # Build settings
 plugins:
