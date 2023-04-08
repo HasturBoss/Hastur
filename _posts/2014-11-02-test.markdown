@@ -1,24 +1,46 @@
 ---
 layout: post
-title: "树莓派烧录系统至SD卡"
+title: "Raspberry Pi burning system to SD card"
 date: 2023-4-05
 categories: jekyll update
 ---
 
-目前来说，树莓派的系统烧录大体上可分为两大类，第一类使用官方的烧录工具Raspberry Pi Imager，第二类是使用第三方烧录工具。两者的区别在于前者是官方提供，操作便捷，系统选择便利；后者的优势是可烧录的系统不局限于官方提供的系统，选择多样性但是需要自己找寻系统。
+The system programming of Raspberry Pi can be roughly divided into two categories. The first category uses the official programming tool Raspberry Pi Imager, and the second category uses third-party programming tools. The difference between the two is that the former is provided by the official, easy to operate, and easy to choose the system; the advantage of the latter is that the system that can be burned is not limited to the system provided by the official, and the choice is diverse, but you need to find the system yourself.
 
-Jekyll also offers powerful support for code snippets:
+# Burning steps:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-# => prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+Hardware: SD card with capacity above 8G, SD card reader
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+Software: Raspberry Pi Imager
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+![demo-1]
+
+Software download address: [raspberrypi](https://www.raspberrypi.org/software/)
+
+![demo-2]
+
+Open the installed Raspberry Pi Imager.
+
+![demo-3]
+
+Click on the CHOOSE OS option on the left.
+
+![demo-4]
+
+Insert the SD card into the PC, click CHOOSE STORAGE, and select the corresponding SD card.
+
+![demo-5]
+
+Click WRITE, select YES directly in the Waring pop-up window to start burning the system, just wait quietly for the progress bar to reach 100%, and the burning is complete.
+
+![demo-6]
+
+Raspberry Pi System Burning: OK!
+
+
+[demo-1]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-1.png
+[demo-2]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-2.png
+[demo-3]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-3.png
+[demo-4]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-4.png
+[demo-5]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-5.png
+[demo-6]:  {{site.baseurl}}/assets/images/posts/2023-4-05/demo-6.png
